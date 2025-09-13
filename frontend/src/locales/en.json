@@ -1,0 +1,107 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "view": "View",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "about": "About",
+    "contact": "Contact",
+    "admin": "Admin",
+    "login": "Login",
+    "register": "Register"
+  },
+  "header": {
+    "logo": "SportCore",
+    "tagline": "Power from the center",
+    "createAccount": "Create Account",
+    "signIn": "Sign In"
+  },
+  "footer": {
+    "copyright": "© 2024 SportCore. All rights reserved.",
+    "description": "Your trusted sports supplements store"
+  },
+  "home": {
+    "title": "Welcome to SportCore",
+    "subtitle": "Power your performance with our premium sports supplements",
+    "searchPlaceholder": "Search products...",
+    "featuredProducts": "Featured Products",
+    "categories": "Categories",
+    "recommendations": "Recommendations"
+  },
+  "products": {
+    "title": "Products",
+    "noProducts": "No products found",
+    "price": "Price",
+    "stock": "Stock",
+    "brand": "Brand",
+    "flavor": "Flavor",
+    "description": "Description",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details",
+    "outOfStock": "Out of Stock"
+  },
+  "product": {
+    "title": "Product Details",
+    "images": "Images",
+    "viewMore": "View More",
+    "specifications": "Specifications",
+    "reviews": "Reviews"
+  },
+  "admin": {
+    "title": "Administration Panel",
+    "products": "Products",
+    "categories": "Categories",
+    "users": "Users",
+    "orders": "Orders",
+    "addProduct": "Add Product",
+    "listProducts": "List Products",
+    "productName": "Product Name",
+    "productDescription": "Product Description",
+    "productPrice": "Product Price",
+    "productStock": "Product Stock",
+    "productCategory": "Product Category",
+    "productBrand": "Product Brand",
+    "productFlavor": "Product Flavor",
+    "actions": "Actions",
+    "deleteProduct": "Delete Product",
+    "confirmDelete": "Are you sure you want to delete this product?",
+    "productDeleted": "Product deleted successfully",
+    "productCreated": "Product created successfully",
+    "productUpdated": "Product updated successfully",
+    "productNameExists": "A product with this name already exists"
+  },
+  "categories": {
+    "title": "Categories",
+    "noCategories": "No categories found",
+    "categoryName": "Category Name",
+    "categoryDescription": "Category Description"
+  },
+  "pagination": {
+    "page": "Page",
+    "of": "of",
+    "itemsPerPage": "Items per page",
+    "showing": "Showing",
+    "to": "to",
+    "ofTotal": "of"
+  }
+}

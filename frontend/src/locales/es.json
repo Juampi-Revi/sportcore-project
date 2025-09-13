@@ -1,0 +1,107 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "view": "Ver",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "products": "Productos",
+    "categories": "Categorías",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "admin": "Admin",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse"
+  },
+  "header": {
+    "logo": "SportCore",
+    "tagline": "Potencia desde el centro",
+    "createAccount": "Crear Cuenta",
+    "signIn": "Iniciar Sesión"
+  },
+  "footer": {
+    "copyright": "© 2024 SportCore. Todos los derechos reservados.",
+    "description": "Tu tienda de suplementos deportivos de confianza"
+  },
+  "home": {
+    "title": "Bienvenido a SportCore",
+    "subtitle": "Potencia tu rendimiento con nuestros suplementos deportivos premium",
+    "searchPlaceholder": "Buscar productos...",
+    "featuredProducts": "Productos Destacados",
+    "categories": "Categorías",
+    "recommendations": "Recomendaciones"
+  },
+  "products": {
+    "title": "Productos",
+    "noProducts": "No se encontraron productos",
+    "price": "Precio",
+    "stock": "Stock",
+    "brand": "Marca",
+    "flavor": "Sabor",
+    "description": "Descripción",
+    "addToCart": "Agregar al Carrito",
+    "viewDetails": "Ver Detalles",
+    "outOfStock": "Sin Stock"
+  },
+  "product": {
+    "title": "Detalles del Producto",
+    "images": "Imágenes",
+    "viewMore": "Ver Más",
+    "specifications": "Especificaciones",
+    "reviews": "Reseñas"
+  },
+  "admin": {
+    "title": "Panel de Administración",
+    "products": "Productos",
+    "categories": "Categorías",
+    "users": "Usuarios",
+    "orders": "Pedidos",
+    "addProduct": "Agregar Producto",
+    "listProducts": "Listar Productos",
+    "productName": "Nombre del Producto",
+    "productDescription": "Descripción del Producto",
+    "productPrice": "Precio del Producto",
+    "productStock": "Stock del Producto",
+    "productCategory": "Categoría del Producto",
+    "productBrand": "Marca del Producto",
+    "productFlavor": "Sabor del Producto",
+    "actions": "Acciones",
+    "deleteProduct": "Eliminar Producto",
+    "confirmDelete": "¿Estás seguro de que quieres eliminar este producto?",
+    "productDeleted": "Producto eliminado exitosamente",
+    "productCreated": "Producto creado exitosamente",
+    "productUpdated": "Producto actualizado exitosamente",
+    "productNameExists": "Ya existe un producto con este nombre"
+  },
+  "categories": {
+    "title": "Categorías",
+    "noCategories": "No se encontraron categorías",
+    "categoryName": "Nombre de la Categoría",
+    "categoryDescription": "Descripción de la Categoría"
+  },
+  "pagination": {
+    "page": "Página",
+    "of": "de",
+    "itemsPerPage": "Elementos por página",
+    "showing": "Mostrando",
+    "to": "a",
+    "ofTotal": "de"
+  }
+}
