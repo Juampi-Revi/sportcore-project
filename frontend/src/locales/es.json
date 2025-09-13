@@ -38,7 +38,8 @@
   },
   "footer": {
     "copyright": "© 2024 SportCore. Todos los derechos reservados.",
-    "description": "Tu tienda de suplementos deportivos de confianza"
+    "description": "Tu tienda de suplementos deportivos de confianza",
+    "allRightsReserved": "Todos los derechos reservados"
   },
   "home": {
     "title": "Bienvenido a SportCore",
