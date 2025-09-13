@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Route, Routes } from 'react-router-dom';
 
 // Components
-// import Footer from './components/organisms/Footer';
-// import Header from './components/organisms/Header';
+import Footer from './components/organisms/Footer';
+import Header from './components/organisms/Header';
 
 // Pages
 // import AddProduct from './pages/AddProduct';
@@ -22,15 +22,9 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* <Header onLanguageChange={changeLanguage} /> */}
-      <header className="bg-primary-500 text-white p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">SportCore</h1>
-          <p className="text-sm">Potencia desde el centro</p>
-        </div>
-      </header>
+      <Header onLanguageChange={changeLanguage} />
       
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         <Routes>
           {/* <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
@@ -47,18 +41,14 @@ function App() {
                 <h2 className="text-2xl font-semibold mb-4">¡Proyecto en Desarrollo!</h2>
                 <p className="text-gray-700">Estamos construyendo la mejor plataforma de suplementos deportivos.</p>
                 <p className="text-sm text-gray-500 mt-4">Backend: ✅ Configurado | Frontend: ✅ Configurado</p>
+                <p className="text-sm text-gray-500 mt-2">Header: ✅ Implementado | Footer: ✅ Implementado</p>
               </div>
             </div>
           } />
         </Routes>
       </main>
       
-      {/* <Footer /> */}
-      <footer className="bg-secondary-600 text-white p-4">
-        <div className="container mx-auto text-center">
-          <p>© 2024 SportCore. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
