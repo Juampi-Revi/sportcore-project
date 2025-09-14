@@ -61,7 +61,27 @@
     "description": "Description",
     "addToCart": "Add to Cart",
     "viewDetails": "View Details",
-    "outOfStock": "Out of Stock"
+    "outOfStock": "Out of Stock",
+    "found": "products found",
+    "total": "total products",
+    "filters": "Filters",
+    "clearFilters": "Clear Filters",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "priceRange": "Price Range",
+    "availability": "Availability",
+    "inStockOnly": "In Stock Only",
+    "noResults": "No products found",
+    "noResultsDescription": "Try adjusting your filters or search terms",
+    "searchPlaceholder": "Search products...",
+    "sort": {
+      "name": "Name",
+      "price": "Price",
+      "stock": "Stock",
+      "brand": "Brand",
+      "ascending": "Ascending",
+      "descending": "Descending"
+    }
   },
   "product": {
     "title": "Product Details",
@@ -243,6 +263,33 @@
       "cvvInvalid": "Please enter a valid CVV",
       "cardholderNameRequired": "Cardholder name is required"
     }
+  },
+  "gallery": {
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next",
+    "play": "Play slideshow",
+    "pause": "Pause slideshow",
+    "share": "Share",
+    "download": "Download",
+    "like": "Like",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Exit fullscreen",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset zoom",
+    "navigate": "Navigate",
+    "zoom": "Zoom",
+    "playPause": "Play/Pause",
+    "linkCopied": "Link copied to clipboard",
+    "keyboardShortcuts": "Keyboard shortcuts",
+    "clickToZoom": "Click to zoom",
+    "dragToPan": "Drag to pan",
+    "imageGallery": "Image Gallery",
+    "viewFullSize": "View full size",
+    "slideshow": "Slideshow",
+    "autoPlay": "Auto play",
+    "stopAutoPlay": "Stop auto play"
   },
   "pagination": {
     "page": "Page",

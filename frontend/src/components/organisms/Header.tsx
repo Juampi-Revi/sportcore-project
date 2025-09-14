@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaDumbbell, FaSignInAlt, FaUserPlus, FaShoppingCart } from 'react-icons/fa';
+import { FaDumbbell, FaSignInAlt, FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import LanguageSwitch from '../molecules/LanguageSwitch';
 import { useCart } from '../../contexts/CartContext';
@@ -39,7 +39,41 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
             </div>
           </Link>
 
-          {/* Right Block - Navigation and Auth Buttons */}
+          {/* Center Block - Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link
+              to="/"
+              className="text-white hover:text-primary-400 transition-colors duration-300 font-medium"
+            >
+              {t('navigation.home')}
+            </Link>
+            <Link
+              to="/products"
+              className="text-white hover:text-primary-400 transition-colors duration-300 font-medium"
+            >
+              {t('navigation.products')}
+            </Link>
+            <Link
+              to="/categories"
+              className="text-white hover:text-primary-400 transition-colors duration-300 font-medium"
+            >
+              {t('navigation.categories')}
+            </Link>
+            <Link
+              to="/about"
+              className="text-white hover:text-primary-400 transition-colors duration-300 font-medium"
+            >
+              {t('navigation.about')}
+            </Link>
+            <Link
+              to="/contact"
+              className="text-white hover:text-primary-400 transition-colors duration-300 font-medium"
+            >
+              {t('navigation.contact')}
+            </Link>
+          </nav>
+
+          {/* Right Block - Cart, Language and Auth */}
           <div className="flex items-center space-x-4">
             {/* Language Switch */}
             <LanguageSwitch onLanguageChange={onLanguageChange} />
@@ -57,23 +91,14 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
               )}
             </Link>
 
-            {/* Auth Buttons */}
-            <div className="flex items-center space-x-3">
-              <Link
-                to="/register"
-                className="flex items-center space-x-2 text-white hover:text-primary-400 text-sm font-medium transition-colors"
-              >
-                <FaUserPlus className="text-sm" />
-                <span>{t('header.createAccount')}</span>
-              </Link>
-              <Link
-                to="/login"
-                className="flex items-center space-x-2 bg-primary-500 text-white hover:bg-primary-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-              >
-                <FaSignInAlt className="text-sm" />
-                <span>{t('header.signIn')}</span>
-              </Link>
-            </div>
+            {/* Sign In Button */}
+            <Link
+              to="/login"
+              className="flex items-center space-x-2 bg-primary-500 text-white hover:bg-primary-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            >
+              <FaSignInAlt className="text-sm" />
+              <span>{t('header.signIn')}</span>
+            </Link>
           </div>
         </div>
       </div>

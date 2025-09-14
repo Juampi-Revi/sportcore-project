@@ -9,6 +9,7 @@ interface ProductCardProps {
   image?: string;
   onAddToCart?: (id: number) => void;
   onViewDetails?: (id: number) => void;
+  viewMode?: 'grid' | 'list';
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -18,9 +19,65 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
   image,
   onAddToCart,
-  onViewDetails
+  onViewDetails,
+  viewMode = 'grid'
 }) => {
   const { t } = useTranslation();
+
+  if (viewMode === 'list') {
+    return (
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+        <div className="flex">
+          {/* Image */}
+          <div className="w-48 h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+            {image ? (
+              <img 
+                src={image} 
+                alt={name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            ) : (
+              <span className="text-gray-500 text-lg font-medium">Product Image</span>
+            )}
+          </div>
+          
+          {/* Content */}
+          <div className="flex-1 p-6 flex flex-col justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                {name}
+              </h3>
+              
+              <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                {description}
+              </p>
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <span className="text-2xl font-bold text-primary-600">
+                ${price.toFixed(2)}
+              </span>
+              
+              <div className="flex space-x-3">
+                <button
+                  onClick={() => onViewDetails?.(id)}
+                  className="bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-lg font-medium transition-colors duration-300"
+                >
+                  {t('products.viewDetails')}
+                </button>
+                <button
+                  onClick={() => onAddToCart?.(id)}
+                  className="bg-primary-500 text-white hover:bg-primary-600 px-4 py-2 rounded-lg font-medium transition-colors duration-300"
+                >
+                  {t('products.addToCart')}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 group">

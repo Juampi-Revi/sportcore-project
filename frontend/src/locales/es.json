@@ -61,7 +61,27 @@
     "description": "Descripción",
     "addToCart": "Agregar al Carrito",
     "viewDetails": "Ver Detalles",
-    "outOfStock": "Sin Stock"
+    "outOfStock": "Sin Stock",
+    "found": "productos encontrados",
+    "total": "productos en total",
+    "filters": "Filtros",
+    "clearFilters": "Limpiar Filtros",
+    "category": "Categoría",
+    "allCategories": "Todas las Categorías",
+    "priceRange": "Rango de Precio",
+    "availability": "Disponibilidad",
+    "inStockOnly": "Solo en Stock",
+    "noResults": "No se encontraron productos",
+    "noResultsDescription": "Intenta ajustar tus filtros o términos de búsqueda",
+    "searchPlaceholder": "Buscar productos...",
+    "sort": {
+      "name": "Nombre",
+      "price": "Precio",
+      "stock": "Stock",
+      "brand": "Marca",
+      "ascending": "Ascendente",
+      "descending": "Descendente"
+    }
   },
   "product": {
     "title": "Detalles del Producto",
@@ -243,6 +263,33 @@
       "cvvInvalid": "Por favor ingresa un CVV válido",
       "cardholderNameRequired": "El nombre del titular es requerido"
     }
+  },
+  "gallery": {
+    "close": "Cerrar",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "play": "Reproducir presentación",
+    "pause": "Pausar presentación",
+    "share": "Compartir",
+    "download": "Descargar",
+    "like": "Me gusta",
+    "fullscreen": "Pantalla completa",
+    "exitFullscreen": "Salir de pantalla completa",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "resetZoom": "Restablecer zoom",
+    "navigate": "Navegar",
+    "zoom": "Zoom",
+    "playPause": "Reproducir/Pausar",
+    "linkCopied": "Enlace copiado al portapapeles",
+    "keyboardShortcuts": "Atajos de teclado",
+    "clickToZoom": "Haz clic para hacer zoom",
+    "dragToPan": "Arrastra para mover",
+    "imageGallery": "Galería de Imágenes",
+    "viewFullSize": "Ver tamaño completo",
+    "slideshow": "Presentación",
+    "autoPlay": "Reproducción automática",
+    "stopAutoPlay": "Detener reproducción automática"
   },
   "pagination": {
     "page": "Página",
