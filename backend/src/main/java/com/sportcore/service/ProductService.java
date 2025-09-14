@@ -66,7 +66,7 @@ public class ProductService {
     // Get all products
     @Transactional(readOnly = true)
     public List<ProductDto> getAllProducts() {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findAllWithImages();
         return products.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
@@ -75,7 +75,7 @@ public class ProductService {
     // Get product by ID
     @Transactional(readOnly = true)
     public ProductDto getProductById(Long id) {
-        Product product = productRepository.findById(id)
+        Product product = productRepository.findByIdWithImages(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
         return convertToDto(product);
     }
@@ -83,9 +83,14 @@ public class ProductService {
     // Get random products (for home page)
     @Transactional(readOnly = true)
     public List<ProductDto> getRandomProducts(int limit) {
-        List<Product> products = productRepository.findRandomProducts(limit);
+        List<Product> products = productRepository.findRandomProductsWithImages(limit);
+        // Load images for each product
         return products.stream()
-                .map(this::convertToDto)
+                .map(product -> {
+                    // Fetch the product with images
+                    Product productWithImages = productRepository.findByIdWithImages(product.getId()).orElse(product);
+                    return convertToDto(productWithImages);
+                })
                 .collect(Collectors.toList());
     }
 
@@ -153,6 +158,20 @@ public class ProductService {
         dto.setCategoryId(product.getCategory().getId());
         dto.setBrand(product.getBrand());
         dto.setFlavor(product.getFlavor());
+        
+        // Convert images
+        if (product.getImages() != null && !product.getImages().isEmpty()) {
+            dto.setImages(product.getImages().stream()
+                .map(image -> {
+                    com.sportcore.dto.ProductImageDto imageDto = new com.sportcore.dto.ProductImageDto();
+                    imageDto.setId(image.getId());
+                    imageDto.setUrl(image.getUrl());
+                    imageDto.setAltText(image.getAltText());
+                    return imageDto;
+                })
+                .collect(Collectors.toList()));
+        }
+        
         return dto;
     }
 }
