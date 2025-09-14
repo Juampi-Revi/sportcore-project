@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFilter, FaSort, FaSearch, FaTh, FaList, FaTimes } from 'react-icons/fa';
-import { productApiService, ProductDto } from '../services/productApiService';
+import { productApiService, ProductDto, PaginatedResponse } from '../services/productApiService';
 import { categoryApiService, CategoryDto } from '../services/categoryApiService';
 import ProductCard from '../components/molecules/ProductCard';
+import Pagination from '../components/molecules/Pagination';
 import { useCart } from '../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,12 +27,17 @@ const Products: React.FC = () => {
 
   // State
   const [products, setProducts] = useState<ProductDto[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<ProductDto[]>([]);
   const [categories, setCategories] = useState<CategoryDto[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
+  
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
+  const [itemsPerPage] = useState(10);
 
   // Filters
   const [filters, setFilters] = useState<FilterState>({
@@ -53,98 +59,54 @@ const Products: React.FC = () => {
   ];
 
   // Fetch data
+  // Load products with pagination
+  const loadProducts = async (page: number = 0) => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const sortParam = `${sortBy},${sortOrder}`;
+      const response = await productApiService.getProductsPaginated({
+        page,
+        size: itemsPerPage,
+        sort: sortParam
+      });
+      
+      setProducts(response.content);
+      setTotalPages(response.totalPages);
+      setTotalItems(response.totalElements);
+      setCurrentPage(response.number);
+    } catch (err) {
+      console.error('Error fetching products:', err);
+      setError('Error loading products');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Load categories
+  const loadCategories = async () => {
+    try {
+      const categoriesData = await categoryApiService.getAllCategories();
+      setCategories(categoriesData);
+    } catch (err) {
+      console.error('Error fetching categories:', err);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        
-        const [productsData, categoriesData] = await Promise.all([
-          productApiService.getAllProducts(),
-          categoryApiService.getAllCategories()
-        ]);
-        
-        setProducts(productsData);
-        setFilteredProducts(productsData);
-        setCategories(categoriesData);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError('Error loading products');
-      } finally {
-        setLoading(false);
-      }
-    };
+    loadProducts(currentPage);
+    loadCategories();
+  }, [currentPage, sortBy, sortOrder]);
 
-    fetchData();
-  }, []);
-
-  // Apply filters and sorting
-  useEffect(() => {
-    let filtered = [...products];
-
-    // Apply search filter
-    if (filters.search) {
-      filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-        product.description?.toLowerCase().includes(filters.search.toLowerCase()) ||
-        product.brand?.toLowerCase().includes(filters.search.toLowerCase())
-      );
-    }
-
-    // Apply category filter
-    if (filters.category) {
-      filtered = filtered.filter(product => product.categoryId === parseInt(filters.category));
-    }
-
-    // Apply price range filter
-    filtered = filtered.filter(product =>
-      product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1]
-    );
-
-    // Apply stock filter
-    if (filters.inStock) {
-      filtered = filtered.filter(product => product.stock > 0);
-    }
-
-    // Apply sorting
-    filtered.sort((a, b) => {
-      let aValue: any, bValue: any;
-
-      switch (sortBy) {
-        case 'name':
-          aValue = a.name.toLowerCase();
-          bValue = b.name.toLowerCase();
-          break;
-        case 'price':
-          aValue = a.price;
-          bValue = b.price;
-          break;
-        case 'stock':
-          aValue = a.stock;
-          bValue = b.stock;
-          break;
-        case 'brand':
-          aValue = (a.brand || '').toLowerCase();
-          bValue = (b.brand || '').toLowerCase();
-          break;
-        default:
-          aValue = a.name.toLowerCase();
-          bValue = b.name.toLowerCase();
-      }
-
-      if (sortOrder === 'asc') {
-        return aValue > bValue ? 1 : -1;
-      } else {
-        return aValue < bValue ? 1 : -1;
-      }
-    });
-
-    setFilteredProducts(filtered);
-  }, [products, filters, sortBy, sortOrder]);
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page - 1); // Convert to 0-based index
+  };
 
   // Event handlers
   const handleAddToCart = (id: number) => {
-    const product = filteredProducts.find(p => p.id === id);
+    const product = products.find(p => p.id === id);
     if (product) {
       addItem(product, 1);
       alert(`${product.name} added to cart!`);
@@ -220,7 +182,7 @@ const Products: React.FC = () => {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('navigation.products')}</h1>
           <p className="text-gray-600">
-            {filteredProducts.length} {t('products.found')} {products.length} {t('products.total')}
+            {totalItems} {t('products.found')} ({t('pagination.page')} {currentPage + 1} {t('pagination.of')} {totalPages})
           </p>
         </div>
 
@@ -371,13 +333,13 @@ const Products: React.FC = () => {
         )}
 
         {/* Products Grid/List */}
-        {filteredProducts.length > 0 ? (
+        {products.length > 0 ? (
           <div className={
             viewMode === 'grid'
               ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
               : 'space-y-4'
           }>
-            {filteredProducts.map((product) => (
+            {products.map((product) => (
               <ProductCard
                 key={product.id}
                 id={product.id!}
@@ -402,6 +364,20 @@ const Products: React.FC = () => {
             >
               {t('products.clearFilters')}
             </button>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-8">
+            <Pagination
+              currentPage={currentPage + 1} // Convert to 1-based for display
+              totalPages={totalPages}
+              totalItems={totalItems}
+              itemsPerPage={itemsPerPage}
+              onPageChange={handlePageChange}
+              showInfo={true}
+            />
           </div>
         )}
       </div>
