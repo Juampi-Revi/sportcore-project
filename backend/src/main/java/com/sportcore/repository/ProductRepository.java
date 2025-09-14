@@ -34,6 +34,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM products ORDER BY RAND() LIMIT :limit", nativeQuery = true)
     List<Product> findRandomProducts(@Param("limit") int limit);
 
+    // Find random products with images (for home page)
+    @Query(value = "SELECT p.* FROM products p ORDER BY RAND() LIMIT :limit", nativeQuery = true)
+    List<Product> findRandomProductsWithImages(@Param("limit") int limit);
+
     // Find products by price range
     List<Product> findByPriceBetween(Double minPrice, Double maxPrice);
 

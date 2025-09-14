@@ -1,12 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaBolt, FaBurn, FaDna, FaDumbbell, FaFire, FaLeaf, FaRedo, FaStar, FaThLarge } from 'react-icons/fa';
 import { GiEnergyArrow, GiMuscleUp } from 'react-icons/gi';
 import ProductCard from '../components/molecules/ProductCard';
 import SearchBar from '../components/molecules/SearchBar';
+import { categoryApiService, CategoryDto, productApiService, ProductDto } from '../services/productApiService';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
+  
+  // State for products and categories
+  const [featuredProducts, setFeaturedProducts] = useState<ProductDto[]>([]);
+  const [categories, setCategories] = useState<CategoryDto[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [searchResults, setSearchResults] = useState<ProductDto[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  // Load featured products and categories on component mount
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        // Load featured products (random products for now)
+        const products = await productApiService.getRandomProducts(4);
+        setFeaturedProducts(products);
+        
+        // Load categories
+        const categoriesData = await categoryApiService.getAllCategories();
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setLoadingProducts(false);
+        setLoadingCategories(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  // Handle search functionality
+  const handleSearch = async (query: string) => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+    try {
+      const results = await productApiService.searchProducts(query);
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Error searching products:', error);
+      setSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  // Handle product actions
+  const handleAddToCart = (id: number) => {
+    console.log('Add to cart:', id);
+    // TODO: Implement cart functionality
+  };
+
+  const handleViewDetails = (id: number) => {
+    console.log('View details:', id);
+    // TODO: Navigate to product detail page
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -23,12 +85,45 @@ const Home: React.FC = () => {
           {/* Search Bar */}
           <div className="max-w-3xl mx-auto">
             <SearchBar 
-              onSearch={(query) => console.log('Search:', query)}
+              onSearch={handleSearch}
               className="shadow-2xl"
             />
           </div>
         </div>
       </section>
+
+      {/* Search Results Section */}
+      {searchResults.length > 0 && (
+        <section className="py-16 bg-gray-100">
+          <div className="container mx-auto px-6">
+            <div className="flex items-center justify-center mb-12">
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-primary-500 rounded-full">
+                  <FaFire className="text-white text-2xl" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
+                  {t('home.searchResults')} ({searchResults.length})
+                </h2>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {searchResults.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id!}
+                  name={product.name}
+                  description={product.description || ''}
+                  price={product.price}
+                  image={product.images?.[0]?.url}
+                  onAddToCart={handleAddToCart}
+                  onViewDetails={handleViewDetails}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Featured Products Section */}
       <section className="py-20 bg-white">
@@ -44,24 +139,48 @@ const Home: React.FC = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          <div className={`grid gap-10 ${
+            featuredProducts.length === 1 
+              ? 'grid-cols-1 max-w-md mx-auto' 
+              : featuredProducts.length === 2 
+              ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto' 
+              : featuredProducts.length === 3 
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto' 
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+          }`}>
             {/* Featured products */}
-            {[
-              { id: 1, name: 'Whey Protein Premium', description: 'Proteína de suero de leche de alta calidad para maximizar tu rendimiento', price: 89.99 },
-              { id: 2, name: 'Creatina Monohidrato', description: 'Creatina pura para aumentar la fuerza y masa muscular', price: 29.99 },
-              { id: 3, name: 'Pre-entreno Explosivo', description: 'Fórmula energética para entrenamientos intensos', price: 49.99 },
-              { id: 4, name: 'Multivitamínico Completo', description: 'Complejo vitamínico para deportistas activos', price: 39.99 }
-            ].map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                description={product.description}
-                price={product.price}
-                onAddToCart={(id) => console.log('Add to cart:', id)}
-                onViewDetails={(id) => console.log('View details:', id)}
-              />
-            ))}
+            {loadingProducts ? (
+              // Loading skeleton
+              Array.from({ length: Math.min(4, featuredProducts.length || 4) }).map((_, index) => (
+                <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
+                  <div className="h-56 bg-gray-200"></div>
+                  <div className="p-8">
+                    <div className="h-6 bg-gray-200 rounded mb-3"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-6"></div>
+                    <div className="h-8 bg-gray-200 rounded mb-3"></div>
+                    <div className="h-10 bg-gray-200 rounded"></div>
+                  </div>
+                </div>
+              ))
+            ) : featuredProducts.length > 0 ? (
+              featuredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id!}
+                  name={product.name}
+                  description={product.description || ''}
+                  price={product.price}
+                  image={product.images?.[0]?.url}
+                  onAddToCart={handleAddToCart}
+                  onViewDetails={handleViewDetails}
+                />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-500 text-lg">{t('products.noProducts')}</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -81,30 +200,45 @@ const Home: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {[
-              { name: 'Proteínas', icon: FaDumbbell, color: 'text-blue-500' },
-              { name: 'Creatina', icon: GiMuscleUp, color: 'text-purple-500' },
-              { name: 'Pre-entreno', icon: FaBolt, color: 'text-yellow-500' },
-              { name: 'Vitaminas', icon: FaLeaf, color: 'text-green-500' },
-              { name: 'Aminoácidos', icon: FaDna, color: 'text-pink-500' },
-              { name: 'Quemadores', icon: FaBurn, color: 'text-red-500' },
-              { name: 'Recuperación', icon: FaRedo, color: 'text-indigo-500' },
-              { name: 'Energía', icon: GiEnergyArrow, color: 'text-orange-500' }
-            ].map((category, index) => {
-              const IconComponent = category.icon;
-              return (
-                <div key={index} className="bg-white rounded-2xl p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group border border-gray-100">
-                  <div className="flex flex-col items-center justify-center h-full">
-                    <div className={`text-5xl mb-6 ${category.color} group-hover:scale-110 transition-transform duration-300 flex items-center justify-center`}>
-                      <IconComponent />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-500 transition-colors duration-300">
-                      {category.name}
-                    </h3>
-                  </div>
+            {loadingCategories ? (
+              // Loading skeleton for categories
+              Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="bg-white rounded-2xl p-8 text-center animate-pulse">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-6"></div>
+                  <div className="h-6 bg-gray-200 rounded"></div>
                 </div>
-              );
-            })}
+              ))
+            ) : (
+              categories.map((category, index) => {
+                // Map category names to icons and colors
+                const getCategoryIcon = (name: string) => {
+                  const lowerName = name.toLowerCase();
+                  if (lowerName.includes('protein')) return { icon: FaDumbbell, color: 'text-blue-500' };
+                  if (lowerName.includes('creatine')) return { icon: GiMuscleUp, color: 'text-purple-500' };
+                  if (lowerName.includes('pre-workout') || lowerName.includes('preworkout')) return { icon: FaBolt, color: 'text-yellow-500' };
+                  if (lowerName.includes('vitamin')) return { icon: FaLeaf, color: 'text-green-500' };
+                  if (lowerName.includes('amino')) return { icon: FaDna, color: 'text-pink-500' };
+                  if (lowerName.includes('fat') || lowerName.includes('burner')) return { icon: FaBurn, color: 'text-red-500' };
+                  if (lowerName.includes('post-workout') || lowerName.includes('recovery')) return { icon: FaRedo, color: 'text-indigo-500' };
+                  return { icon: GiEnergyArrow, color: 'text-orange-500' };
+                };
+
+                const { icon: IconComponent, color } = getCategoryIcon(category.name);
+                
+                return (
+                  <div key={category.id} className="bg-white rounded-2xl p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group border border-gray-100">
+                    <div className="flex flex-col items-center justify-center h-full">
+                      <div className={`text-5xl mb-6 ${color} group-hover:scale-110 transition-transform duration-300 flex items-center justify-center`}>
+                        <IconComponent />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-500 transition-colors duration-300">
+                        {category.name}
+                      </h3>
+                    </div>
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </section>
