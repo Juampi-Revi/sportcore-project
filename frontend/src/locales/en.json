@@ -130,6 +130,25 @@
     "categoryName": "Category Name",
     "categoryDescription": "Category Description"
   },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyDescription": "Looks like you haven't added any items to your cart yet. Start shopping to fill it up!",
+    "continueShopping": "Continue Shopping",
+    "item": "item",
+    "items": "items",
+    "clearCart": "Clear Cart",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "total": "Total",
+    "free": "Free",
+    "checkout": "Proceed to Checkout",
+    "removeItem": "Remove Item",
+    "secureCheckout": "Secure Checkout",
+    "secureDescription": "Your payment information is encrypted and secure"
+  },
   "pagination": {
     "page": "Page",
     "of": "of",

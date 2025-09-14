@@ -3,11 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FaArrowLeft, FaShoppingCart, FaHeart, FaShare, FaStar, FaCheck, FaTruck, FaShieldAlt, FaUndo } from 'react-icons/fa';
 import { productApiService, ProductDto } from '../services/productApiService';
+import { useCart } from '../contexts/CartContext';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { addItem } = useCart();
   
   const [product, setProduct] = useState<ProductDto | null>(null);
   const [loading, setLoading] = useState(true);
@@ -41,13 +43,13 @@ const ProductDetail: React.FC = () => {
     
     setIsAddingToCart(true);
     try {
-      // TODO: Implement actual cart functionality
-      console.log(`Adding ${quantity} of ${product.name} to cart`);
+      // Add product to cart using context
+      addItem(product, quantity);
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Simulate API call for better UX
+      await new Promise(resolve => setTimeout(resolve, 500));
       
-      // Show success message (you could use a toast notification here)
+      // Show success message
       alert(`${quantity} ${product.name} added to cart!`);
     } catch (err) {
       console.error('Error adding to cart:', err);

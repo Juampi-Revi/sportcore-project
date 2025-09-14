@@ -6,10 +6,12 @@ import { GiEnergyArrow, GiMuscleUp } from 'react-icons/gi';
 import ProductCard from '../components/molecules/ProductCard';
 import SearchBar from '../components/molecules/SearchBar';
 import { categoryApiService, CategoryDto, productApiService, ProductDto } from '../services/productApiService';
+import { useCart } from '../contexts/CartContext';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { addItem } = useCart();
   
   // State for products and categories
   const [featuredProducts, setFeaturedProducts] = useState<ProductDto[]>([]);
@@ -63,8 +65,11 @@ const Home: React.FC = () => {
 
   // Handle product actions
   const handleAddToCart = (id: number) => {
-    console.log('Add to cart:', id);
-    // TODO: Implement cart functionality
+    const product = featuredProducts.find(p => p.id === id) || searchResults.find(p => p.id === id);
+    if (product) {
+      addItem(product, 1);
+      alert(`${product.name} added to cart!`);
+    }
   };
 
   const handleViewDetails = (id: number) => {
