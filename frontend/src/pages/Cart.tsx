@@ -11,9 +11,7 @@ const Cart: React.FC = () => {
   const { state, clearCart } = useCart();
 
   const handleCheckout = () => {
-    // TODO: Implement checkout functionality
-    console.log('Proceeding to checkout...');
-    alert('Checkout functionality will be implemented in the next user story!');
+    navigate('/checkout');
   };
 
   const handleContinueShopping = () => {
