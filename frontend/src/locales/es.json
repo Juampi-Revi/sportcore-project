@@ -39,8 +39,25 @@
   },
   "footer": {
     "copyright": "© 2024 SportCore. Todos los derechos reservados.",
-    "description": "Tu tienda de suplementos deportivos de confianza",
-    "allRightsReserved": "Todos los derechos reservados"
+    "description": "Tu tienda de suplementos deportivos de confianza. Proporcionamos suplementos de calidad premium para ayudarte a alcanzar tus objetivos fitness.",
+    "allRightsReserved": "Todos los derechos reservados",
+    "quickLinks": "Enlaces Rápidos",
+    "customerService": "Atención al Cliente",
+    "contactInfo": "Información de Contacto",
+    "shipping": "Información de Envío",
+    "returns": "Devoluciones y Cambios",
+    "support": "Soporte al Cliente",
+    "faq": "Preguntas Frecuentes",
+    "address": "Calle Fitness 123, Ciudad Deportiva, CD 12345",
+    "phone": "+1 (555) 123-4567",
+    "email": "info@sportcore.com",
+    "hours": "Lun-Vie: 9AM-6PM, Sáb: 10AM-4PM",
+    "newsletter": "Boletín",
+    "newsletterPlaceholder": "Ingresa tu email",
+    "subscribe": "Suscribirse",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "cookies": "Política de Cookies"
   },
   "home": {
     "title": "Bienvenido a SportCore",
