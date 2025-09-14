@@ -13,11 +13,11 @@ import AddProduct from './pages/AddProduct';
 // import Admin from './pages/Admin';
 // import AdminProducts from './pages/AdminProducts';
 import Home from './pages/Home';
+import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
-// import Products from './pages/Products';
 
 function App() {
   const { i18n } = useTranslation();
@@ -34,13 +34,13 @@ function App() {
         <main className="flex-1 pt-16">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/admin/products/add" element={<AddProduct />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/admin/products/add" element={<AddProduct />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order-confirmation/:id" element={<OrderConfirmation />} />
-            {/* <Route path="/products" element={<Products />} />
-            <Route path="/admin" element={<Admin />} />
+            {/* <Route path="/admin" element={<Admin />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/products/edit/:id" element={<AddProduct />} /> */}
           </Routes>

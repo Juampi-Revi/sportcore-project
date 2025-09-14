@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaArrowLeft, FaShoppingCart, FaHeart, FaShare, FaStar, FaCheck, FaTruck, FaShieldAlt, FaUndo } from 'react-icons/fa';
-import { productApiService, ProductDto } from '../services/productApiService';
+import { FaArrowLeft, FaExpand, FaHeart, FaShare, FaShieldAlt, FaShoppingCart, FaStar, FaTruck, FaUndo } from 'react-icons/fa';
+import { useNavigate, useParams } from 'react-router-dom';
+import LazyImage from '../components/atoms/LazyImage';
+import ThumbnailGallery from '../components/molecules/ThumbnailGallery';
+import ImageGallery from '../components/organisms/ImageGallery';
 import { useCart } from '../contexts/CartContext';
+import { productApiService, ProductDto } from '../services/productApiService';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,6 +20,7 @@ const ProductDetail: React.FC = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -154,12 +158,24 @@ const ProductDetail: React.FC = () => {
           <div className="space-y-6">
             {/* Main Image */}
             <div className="relative group">
-              <div className="aspect-square bg-white rounded-2xl shadow-lg overflow-hidden">
-                <img
+              <div className="aspect-square bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer">
+                <LazyImage
                   src={allImages[selectedImageIndex]}
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onLoad={() => console.log('Image loaded')}
                 />
+                
+                {/* Gallery Overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <button
+                    onClick={() => setIsGalleryOpen(true)}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white"
+                    title={t('gallery.viewFullSize')}
+                  >
+                    <FaExpand className="text-gray-700 text-xl" />
+                  </button>
+                </div>
               </div>
               
               {/* Image Actions */}
@@ -167,37 +183,29 @@ const ProductDetail: React.FC = () => {
                 <button
                   onClick={handleShare}
                   className="p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-colors duration-300"
+                  title={t('gallery.share')}
                 >
                   <FaShare className="text-gray-700" />
                 </button>
-                <button className="p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-colors duration-300">
+                <button 
+                  className="p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-colors duration-300"
+                  title={t('gallery.like')}
+                >
                   <FaHeart className="text-gray-700" />
                 </button>
               </div>
             </div>
 
-            {/* Thumbnail Images */}
-            {allImages.length > 1 && (
-              <div className="flex space-x-4 overflow-x-auto pb-2">
-                {allImages.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImageIndex(index)}
-                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                      selectedImageIndex === index
-                        ? 'border-primary-500 shadow-lg'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <img
-                      src={image}
-                      alt={`${product.name} ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
+            {/* Enhanced Thumbnail Gallery */}
+            <ThumbnailGallery
+              images={allImages}
+              selectedIndex={selectedImageIndex}
+              onImageSelect={setSelectedImageIndex}
+              altText={product.name}
+              autoPlay={false}
+              showIndicators={true}
+              showNavigation={true}
+            />
           </div>
 
           {/* Product Information */}
@@ -333,6 +341,16 @@ const ProductDetail: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Image Gallery Modal */}
+      <ImageGallery
+        images={allImages}
+        altText={product.name}
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        initialIndex={selectedImageIndex}
+        productName={product.name}
+      />
     </div>
   );
 };
