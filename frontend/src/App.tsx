@@ -10,7 +10,7 @@ import AddProduct from './pages/AddProduct';
 // import Admin from './pages/Admin';
 // import AdminProducts from './pages/AdminProducts';
 import Home from './pages/Home';
-// import ProductDetail from './pages/ProductDetail';
+import ProductDetail from './pages/ProductDetail';
 // import Products from './pages/Products';
 
 function App() {
@@ -28,8 +28,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin/products/add" element={<AddProduct />} />
-          {/* <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
+          {/* <Route path="/products" element={<Products />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/products" element={<AdminProducts />} />
           <Route path="/admin/products/edit/:id" element={<AddProduct />} /> */}

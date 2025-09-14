@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { FaBolt, FaBurn, FaDna, FaDumbbell, FaFire, FaLeaf, FaRedo, FaStar, FaThLarge } from 'react-icons/fa';
 import { GiEnergyArrow, GiMuscleUp } from 'react-icons/gi';
 import ProductCard from '../components/molecules/ProductCard';
@@ -8,6 +9,7 @@ import { categoryApiService, CategoryDto, productApiService, ProductDto } from '
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   
   // State for products and categories
   const [featuredProducts, setFeaturedProducts] = useState<ProductDto[]>([]);
@@ -66,8 +68,7 @@ const Home: React.FC = () => {
   };
 
   const handleViewDetails = (id: number) => {
-    console.log('View details:', id);
-    // TODO: Navigate to product detail page
+    navigate(`/products/${id}`);
   };
 
   return (
