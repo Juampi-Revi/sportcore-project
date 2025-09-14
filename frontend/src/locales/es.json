@@ -130,6 +130,25 @@
     "categoryName": "Nombre de la Categoría",
     "categoryDescription": "Descripción de la Categoría"
   },
+  "cart": {
+    "title": "Carrito de Compras",
+    "empty": "Tu carrito está vacío",
+    "emptyDescription": "Parece que no has agregado ningún artículo a tu carrito aún. ¡Comienza a comprar para llenarlo!",
+    "continueShopping": "Continuar Comprando",
+    "item": "artículo",
+    "items": "artículos",
+    "clearCart": "Vaciar Carrito",
+    "orderSummary": "Resumen del Pedido",
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "tax": "Impuestos",
+    "total": "Total",
+    "free": "Gratis",
+    "checkout": "Proceder al Pago",
+    "removeItem": "Eliminar Artículo",
+    "secureCheckout": "Pago Seguro",
+    "secureDescription": "Tu información de pago está encriptada y segura"
+  },
   "pagination": {
     "page": "Página",
     "of": "de",

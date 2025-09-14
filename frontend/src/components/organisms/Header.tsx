@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaDumbbell, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import { FaDumbbell, FaSignInAlt, FaUserPlus, FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import LanguageSwitch from '../molecules/LanguageSwitch';
+import { useCart } from '../../contexts/CartContext';
 
 interface HeaderProps {
   onLanguageChange?: (language: string) => void;
@@ -10,6 +11,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
   const { t } = useTranslation();
+  const { state } = useCart();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-lg border-b border-primary-500">
@@ -41,6 +43,19 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
           <div className="flex items-center space-x-4">
             {/* Language Switch */}
             <LanguageSwitch onLanguageChange={onLanguageChange} />
+
+            {/* Cart Icon */}
+            <Link
+              to="/cart"
+              className="relative flex items-center space-x-2 text-white hover:text-primary-400 transition-colors duration-300"
+            >
+              <FaShoppingCart className="text-lg" />
+              {state.totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {state.totalItems > 99 ? '99+' : state.totalItems}
+                </span>
+              )}
+            </Link>
 
             {/* Auth Buttons */}
             <div className="flex items-center space-x-3">

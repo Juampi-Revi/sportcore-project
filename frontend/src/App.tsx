@@ -5,12 +5,16 @@ import { Route, Routes } from 'react-router-dom';
 import Footer from './components/organisms/Footer';
 import Header from './components/organisms/Header';
 
+// Contexts
+import { CartProvider } from './contexts/CartContext';
+
 // Pages
 import AddProduct from './pages/AddProduct';
 // import Admin from './pages/Admin';
 // import AdminProducts from './pages/AdminProducts';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
 // import Products from './pages/Products';
 
 function App() {
@@ -21,23 +25,26 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header onLanguageChange={changeLanguage} />
-      
-      <main className="flex-1 pt-16">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin/products/add" element={<AddProduct />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          {/* <Route path="/products" element={<Products />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/products" element={<AdminProducts />} />
-          <Route path="/admin/products/edit/:id" element={<AddProduct />} /> */}
-        </Routes>
-      </main>
-      
-      <Footer />
-    </div>
+    <CartProvider>
+      <div className="min-h-screen flex flex-col">
+        <Header onLanguageChange={changeLanguage} />
+        
+        <main className="flex-1 pt-16">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/admin/products/add" element={<AddProduct />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+            {/* <Route path="/products" element={<Products />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/products" element={<AdminProducts />} />
+            <Route path="/admin/products/edit/:id" element={<AddProduct />} /> */}
+          </Routes>
+        </main>
+        
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }
 
