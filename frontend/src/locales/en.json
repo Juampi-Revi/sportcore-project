@@ -39,8 +39,25 @@
   },
   "footer": {
     "copyright": "© 2024 SportCore. All rights reserved.",
-    "description": "Your trusted sports supplements store",
-    "allRightsReserved": "All rights reserved"
+    "description": "Your trusted sports supplements store. We provide premium quality supplements to help you achieve your fitness goals.",
+    "allRightsReserved": "All rights reserved",
+    "quickLinks": "Quick Links",
+    "customerService": "Customer Service",
+    "contactInfo": "Contact Info",
+    "shipping": "Shipping Info",
+    "returns": "Returns & Exchanges",
+    "support": "Customer Support",
+    "faq": "FAQ",
+    "address": "123 Fitness Street, Sports City, SC 12345",
+    "phone": "+1 (555) 123-4567",
+    "email": "info@sportcore.com",
+    "hours": "Mon-Fri: 9AM-6PM, Sat: 10AM-4PM",
+    "newsletter": "Newsletter",
+    "newsletterPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
   },
   "home": {
     "title": "Welcome to SportCore",
