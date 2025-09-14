@@ -27,11 +27,46 @@ export interface CategoryDto {
   description?: string;
 }
 
+// Pagination interfaces
+export interface PaginatedResponse<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+  numberOfElements: number;
+  first: boolean;
+  last: boolean;
+  empty: boolean;
+}
+
+export interface PaginationParams {
+  page?: number;
+  size?: number;
+  sort?: string;
+}
+
 // Product API functions
 export const productApiService = {
   // Get all products
   getAllProducts: async (): Promise<ProductDto[]> => {
     const response = await axios.get(`${API_BASE_URL}/products/all`);
+    return response.data;
+  },
+
+  // Get products with pagination
+  getProductsPaginated: async (params: PaginationParams = {}): Promise<PaginatedResponse<ProductDto>> => {
+    const { page = 0, size = 10, sort } = params;
+    const queryParams = new URLSearchParams({
+      page: page.toString(),
+      size: size.toString(),
+    });
+    
+    if (sort) {
+      queryParams.append('sort', sort);
+    }
+    
+    const response = await axios.get(`${API_BASE_URL}/products?${queryParams.toString()}`);
     return response.data;
   },
 

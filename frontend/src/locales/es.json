@@ -59,6 +59,17 @@
     "terms": "Términos de Servicio",
     "cookies": "Política de Cookies"
   },
+  "pagination": {
+    "showing": "Mostrando",
+    "to": "a",
+    "of": "de",
+    "results": "resultados",
+    "firstPage": "Primera página",
+    "previousPage": "Página anterior",
+    "nextPage": "Página siguiente",
+    "lastPage": "Última página",
+    "page": "Página"
+  },
   "home": {
     "title": "Bienvenido a SportCore",
     "subtitle": "Potencia tu rendimiento con nuestros suplementos deportivos premium",
