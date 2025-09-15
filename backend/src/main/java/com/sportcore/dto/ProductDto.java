@@ -40,7 +40,6 @@ public class ProductDto {
 
     private List<ProductImageDto> images;
 
-    // Constructors
     public ProductDto() {}
 
     public ProductDto(String name, String description, BigDecimal price, Integer stock, Long categoryId) {
@@ -51,7 +50,6 @@ public class ProductDto {
         this.categoryId = categoryId;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

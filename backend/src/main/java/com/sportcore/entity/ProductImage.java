@@ -29,7 +29,6 @@ public class ProductImage extends BaseEntity {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    // Constructors
     public ProductImage() {}
 
     public ProductImage(String url, String altText, Boolean isPrimary, Product product) {
@@ -39,7 +38,6 @@ public class ProductImage extends BaseEntity {
         this.product = product;
     }
 
-    // Getters and Setters
     public String getUrl() {
         return url;
     }

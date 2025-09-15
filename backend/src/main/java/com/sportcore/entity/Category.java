@@ -28,7 +28,6 @@ public class Category extends BaseEntity {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products = new ArrayList<>();
 
-    // Constructors
     public Category() {}
 
     public Category(String name, String description) {
@@ -36,7 +35,6 @@ public class Category extends BaseEntity {
         this.description = description;
     }
 
-    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -61,7 +59,6 @@ public class Category extends BaseEntity {
         this.products = products;
     }
 
-    // Helper methods
     public void addProduct(Product product) {
         products.add(product);
         product.setCategory(this);

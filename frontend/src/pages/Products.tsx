@@ -25,7 +25,6 @@ const Products: React.FC = () => {
   const { addItem } = useCart();
   const navigate = useNavigate();
 
-  // State
   const [products, setProducts] = useState<ProductDto[]>([]);
   const [categories, setCategories] = useState<CategoryDto[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,13 +32,11 @@ const Products: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
   
-  // Pagination state
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [itemsPerPage] = useState(10);
 
-  // Filters
   const [filters, setFilters] = useState<FilterState>({
     category: '',
     priceRange: [0, 1000],
@@ -47,7 +44,6 @@ const Products: React.FC = () => {
     search: ''
   });
 
-  // Sorting
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
@@ -58,8 +54,6 @@ const Products: React.FC = () => {
     { value: 'brand', label: t('products.sort.brand') }
   ];
 
-  // Fetch data
-  // Load products with pagination
   const loadProducts = async (page: number = 0) => {
     try {
       setLoading(true);
@@ -84,7 +78,6 @@ const Products: React.FC = () => {
     }
   };
 
-  // Load categories
   const loadCategories = async () => {
     try {
       const categoriesData = await categoryApiService.getAllCategories();
@@ -99,12 +92,9 @@ const Products: React.FC = () => {
     loadCategories();
   }, [currentPage, sortBy, sortOrder]);
 
-  // Handle page change
   const handlePageChange = (page: number) => {
-    setCurrentPage(page - 1); // Convert to 0-based index
+    setCurrentPage(page - 1);
   };
-
-  // Event handlers
   const handleAddToCart = (id: number) => {
     const product = products.find(p => p.id === id);
     if (product) {
