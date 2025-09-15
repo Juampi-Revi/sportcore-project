@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { 
-  FaDumbbell, 
-  FaFacebook, 
-  FaInstagram, 
-  FaTwitter, 
-  FaYoutube,
-  FaMapMarkerAlt,
-  FaPhone,
-  FaEnvelope,
-  FaClock,
-  FaArrowRight,
-  FaShieldAlt,
-  FaTruck,
-  FaHeadset,
-  FaAward
+import {
+    FaArrowRight,
+    FaAward,
+    FaClock,
+    FaDumbbell,
+    FaEnvelope,
+    FaFacebook,
+    FaHeadset,
+    FaInstagram,
+    FaMapMarkerAlt,
+    FaPhone,
+    FaShieldAlt,
+    FaTruck,
+    FaTwitter,
+    FaYoutube
 } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -31,19 +31,22 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-primary-500/5 via-transparent to-accent-500/5"></div>
+      
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FaDumbbell className="text-white text-lg" />
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-xl">SportCore</span>
+                <span className="font-black text-xl bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">SportCore</span>
                 <span className="text-gray-400 text-sm">
                   {t('header.tagline')}
                 </span>
@@ -58,28 +61,28 @@ const Footer: React.FC = () => {
             <div className="flex space-x-4">
               <a 
                 href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-500 rounded-lg flex items-center justify-center transition-colors duration-300"
+                className="w-10 h-10 bg-gray-800/80 backdrop-blur-sm hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
                 aria-label="Facebook"
               >
                 <FaFacebook className="text-lg" />
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-500 rounded-lg flex items-center justify-center transition-colors duration-300"
+                className="w-10 h-10 bg-gray-800/80 backdrop-blur-sm hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
                 aria-label="Instagram"
               >
                 <FaInstagram className="text-lg" />
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-500 rounded-lg flex items-center justify-center transition-colors duration-300"
+                className="w-10 h-10 bg-gray-800/80 backdrop-blur-sm hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
                 aria-label="Twitter"
               >
                 <FaTwitter className="text-lg" />
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-500 rounded-lg flex items-center justify-center transition-colors duration-300"
+                className="w-10 h-10 bg-gray-800/80 backdrop-blur-sm hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
                 aria-label="YouTube"
               >
                 <FaYoutube className="text-lg" />
@@ -236,7 +239,7 @@ const Footer: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
+                  className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white py-2 px-4 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
                 >
                   {t('footer.subscribe')}
                   <FaArrowRight className="ml-2 text-xs" />

@@ -34,11 +34,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
         value={searchQuery}
         onChange={handleInputChange}
         placeholder={placeholder || t('home.searchPlaceholder')}
-        className="w-full px-8 py-5 pr-16 text-gray-900 rounded-2xl text-xl focus:outline-none focus:ring-4 focus:ring-primary-500/20 shadow-2xl border border-gray-200 font-medium"
+        className="w-full px-8 py-5 pr-16 text-gray-900 rounded-3xl text-xl focus:outline-none focus:ring-4 focus:ring-primary-500/30 shadow-2xl border border-white/20 bg-white/90 backdrop-blur-sm font-medium hover:bg-white/95 transition-all duration-300 focus:bg-white focus:shadow-3xl"
       />
       <button 
         type="submit"
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-500 transition-colors duration-300"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-500 transition-all duration-300 hover:scale-110 active:scale-95"
       >
         <FaSearch className="text-2xl" />
       </button>
