@@ -239,10 +239,13 @@ const ProductDetail: React.FC = () => {
 
             {/* Price */}
             <div className="flex items-center space-x-4">
-              <span className="text-5xl font-black text-primary-500">${product.price}</span>
+              <span className="text-5xl font-black bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent">${product.price}</span>
               <div className="text-sm text-gray-600">
                 <div>Stock: {product.stock} units</div>
-                <div className="text-green-600 font-medium">In Stock</div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-green-600 font-semibold">In Stock</span>
+                </div>
               </div>
             </div>
 
@@ -284,7 +287,7 @@ const ProductDetail: React.FC = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={isAddingToCart || product.stock === 0}
-                className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 px-6 rounded-xl font-semibold text-lg shadow-lg hover:from-primary-600 hover:to-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-3"
+                className="w-full bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white py-4 px-6 rounded-2xl font-semibold text-lg shadow-2xl hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-3 hover:shadow-3xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
               >
                 {isAddingToCart ? (
                   <>

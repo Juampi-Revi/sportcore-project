@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaDumbbell, FaSignInAlt, FaShoppingCart } from 'react-icons/fa';
+import { FaDumbbell, FaShoppingCart, FaSignInAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import LanguageSwitch from '../molecules/LanguageSwitch';
 import { useCart } from '../../contexts/CartContext';
+import LanguageSwitch from '../molecules/LanguageSwitch';
 
 interface HeaderProps {
   onLanguageChange?: (language: string) => void;
@@ -14,22 +14,22 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
   const { state } = useCart();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-lg border-b border-primary-500">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md shadow-2xl border-b border-primary-500/30">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Left Block - Logo and Tagline */}
           <Link 
             to="/" 
-            className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+            className="flex items-center space-x-3 hover:opacity-80 transition-all duration-300 hover:scale-105"
           >
             <div className="flex items-center space-x-2">
               {/* Logo */}
-              <div className="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FaDumbbell className="text-white text-lg" />
               </div>
               {/* Brand Name and Tagline */}
               <div className="flex flex-col">
-                <h1 className="text-white font-bold text-xl leading-tight">
+                <h1 className="text-white font-black text-xl leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                   SportCore
                 </h1>
                 <p className="text-gray-400 text-xs leading-tight">
@@ -94,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
             {/* Sign In Button */}
             <Link
               to="/login"
-              className="flex items-center space-x-2 bg-primary-500 text-white hover:bg-primary-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              className="flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
             >
               <FaSignInAlt className="text-sm" />
               <span>{t('header.signIn')}</span>
