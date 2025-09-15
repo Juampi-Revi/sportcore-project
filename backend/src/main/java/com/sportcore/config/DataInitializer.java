@@ -1,16 +1,17 @@
 package com.sportcore.config;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
 import com.sportcore.entity.Category;
 import com.sportcore.entity.Product;
 import com.sportcore.entity.ProductImage;
 import com.sportcore.repository.CategoryRepository;
 import com.sportcore.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
-import java.util.Arrays;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -23,7 +24,6 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Initialize categories
         if (categoryRepository.count() == 0) {
             Category proteins = new Category("Proteins", "High-quality protein supplements for muscle building and recovery");
             Category creatine = new Category("Creatine", "Creatine supplements for enhanced strength and power");
@@ -34,7 +34,6 @@ public class DataInitializer implements CommandLineRunner {
 
             categoryRepository.saveAll(Arrays.asList(proteins, creatine, preWorkout, postWorkout, vitamins, fatBurners));
 
-            // Initialize products
             Product wheyProtein = new Product();
             wheyProtein.setName("Whey Protein Isolate");
             wheyProtein.setDescription("Premium whey protein isolate with 25g protein per serving. Perfect for post-workout recovery and muscle building.");
@@ -64,7 +63,6 @@ public class DataInitializer implements CommandLineRunner {
 
             productRepository.saveAll(Arrays.asList(wheyProtein, caseinProtein, creatineMonohydrate));
 
-            // Add images to products
             ProductImage wheyImage = new ProductImage();
             wheyImage.setUrl("https://via.placeholder.com/400x400/DC2626/FFFFFF?text=Whey+Protein");
             wheyImage.setAltText("Whey Protein Isolate - Vanilla");

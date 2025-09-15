@@ -1,12 +1,13 @@
 package com.sportcore.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -48,7 +49,6 @@ public class User extends BaseEntity {
     // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     // private List<Order> orders = new ArrayList<>();
 
-    // Constructors
     public User() {}
 
     public User(String email, String password, String firstName, String lastName) {
@@ -58,7 +58,6 @@ public class User extends BaseEntity {
         this.lastName = lastName;
     }
 
-    // Getters and Setters
     public String getEmail() {
         return email;
     }
@@ -115,7 +114,6 @@ public class User extends BaseEntity {
         this.isActive = isActive;
     }
 
-    // Helper methods
     public String getFullName() {
         return firstName + " " + lastName;
     }

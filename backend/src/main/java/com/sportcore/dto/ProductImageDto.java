@@ -18,7 +18,6 @@ public class ProductImageDto {
 
     private Long productId;
 
-    // Constructors
     public ProductImageDto() {}
 
     public ProductImageDto(String url, String altText, Boolean isPrimary) {
@@ -27,7 +26,6 @@ public class ProductImageDto {
         this.isPrimary = isPrimary;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

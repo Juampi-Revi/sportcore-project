@@ -29,10 +29,8 @@ public abstract class BaseEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    // Constructors
     public BaseEntity() {}
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

@@ -18,7 +18,6 @@ public class CategoryDto {
 
     private List<ProductDto> products;
 
-    // Constructors
     public CategoryDto() {}
 
     public CategoryDto(String name, String description) {
@@ -26,7 +25,6 @@ public class CategoryDto {
         this.description = description;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

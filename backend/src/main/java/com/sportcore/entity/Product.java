@@ -57,7 +57,6 @@ public class Product extends BaseEntity {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ProductImage> images = new ArrayList<>();
 
-    // Constructors
     public Product() {}
 
     public Product(String name, String description, BigDecimal price, Integer stock, Category category) {
@@ -68,7 +67,6 @@ public class Product extends BaseEntity {
         this.category = category;
     }
 
-    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -133,7 +131,6 @@ public class Product extends BaseEntity {
         this.images = images;
     }
 
-    // Helper methods
     public void addImage(ProductImage image) {
         images.add(image);
         image.setProduct(this);
