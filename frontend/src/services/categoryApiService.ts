@@ -21,5 +21,10 @@ export const categoryApiService = {
   getCategoryById: async (id: number): Promise<CategoryDto> => {
     const response = await axios.get(`${API_BASE_URL}/categories/${id}`);
     return response.data;
+  },
+
+  // Delete category
+  deleteCategory: async (id: number): Promise<void> => {
+    await axios.delete(`${API_BASE_URL}/categories/${id}`);
   }
 };

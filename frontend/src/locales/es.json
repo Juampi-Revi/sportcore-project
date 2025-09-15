@@ -27,9 +27,96 @@
     "categories": "Categorías",
     "about": "Acerca de",
     "contact": "Contacto",
-    "admin": "Admin",
+    "admin": "Administración",
     "login": "Iniciar Sesión",
     "register": "Registrarse"
+  },
+  "admin": {
+    "title": "Panel de Administración",
+    "subtitle": "Gestiona tu negocio de forma eficiente",
+    "quickActions": "Acciones Rápidas",
+    "newProduct": "Nuevo Producto",
+    "newCategory": "Nueva Categoría",
+    "manageProducts": "Gestionar Productos",
+    "manageCategories": "Gestionar Categorías",
+    "stats": {
+      "activeProducts": "Productos Activos",
+      "categories": "Categorías",
+      "functions": "Funciones"
+    },
+    "functions": {
+      "productManagement": {
+        "title": "Gestión de Productos",
+        "description": "Crear, editar y eliminar productos del catálogo"
+      },
+      "categoryManagement": {
+        "title": "Gestión de Categorías",
+        "description": "Administrar categorías de productos"
+      },
+      "userManagement": {
+        "title": "Gestión de Usuarios",
+        "description": "Administrar usuarios y permisos"
+      },
+      "orderManagement": {
+        "title": "Gestión de Pedidos",
+        "description": "Ver y gestionar pedidos de clientes"
+      },
+      "analytics": {
+        "title": "Analíticas",
+        "description": "Ver estadísticas y reportes de ventas"
+      },
+      "settings": {
+        "title": "Configuración",
+        "description": "Configurar la tienda y preferencias"
+      }
+    },
+    "status": {
+      "available": "Disponible",
+      "comingSoon": "Próximamente",
+      "inDevelopment": "En desarrollo"
+    },
+    "actions": {
+      "access": "Acceder",
+      "backToPanel": "Volver al Panel"
+    },
+    "mobile": {
+      "title": "Panel no disponible en móviles",
+      "message": "El panel de administración está optimizado para dispositivos de escritorio. Por favor, accede desde una computadora para una mejor experiencia.",
+      "recommendation": "Recomendamos usar una pantalla de al menos 1024px de ancho."
+    },
+    "products": {
+      "title": "Gestión de Productos",
+      "subtitle": "Administra el catálogo de productos de tu tienda",
+      "newProduct": "Nuevo Producto",
+      "noProducts": "No hay productos",
+      "noProductsMessage": "Comienza agregando tu primer producto",
+      "addProduct": "Agregar Producto",
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "stock": "Stock",
+      "deleteConfirm": "¿Estás seguro de que quieres eliminar este producto?",
+      "deleteSuccess": "Producto eliminado exitosamente",
+      "deleteError": "Error al eliminar el producto",
+      "error": "Error",
+      "retry": "Reintentar"
+    },
+    "categories": {
+      "title": "Gestión de Categorías",
+      "subtitle": "Administra las categorías de productos",
+      "newCategory": "Nueva Categoría",
+      "noCategories": "No hay categorías",
+      "noCategoriesMessage": "Comienza agregando tu primera categoría",
+      "addCategory": "Agregar Categoría",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "noDescription": "Sin descripción",
+      "deleteConfirm": "¿Estás seguro de que quieres eliminar esta categoría?",
+      "deleteSuccess": "Categoría eliminada exitosamente",
+      "deleteError": "Error al eliminar la categoría",
+      "error": "Error",
+      "retry": "Reintentar"
+    }
   },
   "header": {
     "logo": "SportCore",
