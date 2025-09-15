@@ -71,6 +71,12 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
             >
               {t('navigation.contact')}
             </Link>
+            <Link
+              to="/administracion"
+              className="text-white hover:text-primary-400 transition-colors duration-300 font-medium"
+            >
+              {t('navigation.admin')}
+            </Link>
           </nav>
 
           {/* Right Block - Cart, Language and Auth */}
